@@ -22,3 +22,6 @@ resource "aws_key_pair" "terraform_ec2_key" {
   public_key = "ssh-rsa xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 }
 
+output "ip" {
+  value = "${aws_instance.ec2.*.public_ip}"
+}
