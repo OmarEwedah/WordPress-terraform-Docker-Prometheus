@@ -14,6 +14,6 @@
 - name: install docker-compose
   become: yes
   get_url:
-    url: https://github.com/docker/compose/releases/download/1.16.1/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}
+    url: https://github.com/docker/compose/releases/download/1.20.1/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}
     dest: /usr/local/bin/docker-compose
     mode: +x
