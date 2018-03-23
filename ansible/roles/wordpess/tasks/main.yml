@@ -1,0 +1,10 @@
+- name: Run wordpress and mysql
+  docker_service:
+    project_src: ~/WordPress-terraform-Docker-Prometheus/ansible/roles/wordpess/tasks
+    project_name: wordpress
+    files: docker-compose.yml
+    state: "{{ item }}"
+  become: false
+  with_items:
+    - absent
+    - present
