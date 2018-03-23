@@ -1,0 +1,19 @@
+- name: Download docker shell file
+  get_url:
+    url: https://releases.rancher.com/install-docker/1.12.sh
+    dest: /home/ec2-user/
+
+- name: install docker
+  script: /home/ec2-user/1.12.sh
+
+- name: restart docker
+  service:
+    name: docker
+    state: restarted
+
+- name: install docker-compose
+  become: yes
+  get_url:
+    url: https://github.com/docker/compose/releases/download/1.16.1/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}
+    dest: /usr/local/bin/docker-compose
+    mode: +x
