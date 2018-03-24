@@ -1,0 +1,11 @@
+- name: Run Prometheus, cAdvisor and grafana
+  docker_service:
+    project_src: ~/WordPress-terraform-Docker-Prometheus/prometheus-cadvisor-grafana-docker-compose
+    project_name: Prometheus
+    files: docker-compose.yml
+    state: "{{ item }}"
+  become: false
+  with_items:
+    - absent
+    - present
+
