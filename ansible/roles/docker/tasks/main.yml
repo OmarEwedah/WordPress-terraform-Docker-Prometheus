@@ -1,10 +1,10 @@
 - name: Download docker shell file
   get_url:
-    url: https://releases.rancher.com/install-docker/1.12.sh
+    url: https://releases.rancher.com/install-docker/1.13.sh
     dest: /home/ec2-user/
 
 - name: install docker
-  script: /home/ec2-user/1.12.sh
+  script: /home/ec2-user/1.13.sh
 
 - name: restart docker
   service:
