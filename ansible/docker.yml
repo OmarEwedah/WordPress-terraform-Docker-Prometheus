@@ -2,6 +2,9 @@
 - hosts: all
   become: true
   roles:
-     - docker
-     - wordpress
-     - prometheus
+     - { role: docker,
+         tags: docker }
+     - { role: wordpress,
+         tags: wordpress }
+     - { role: prometheus,
+         tags: prometheus }

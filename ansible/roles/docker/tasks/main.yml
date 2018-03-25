@@ -1,10 +1,27 @@
+- easy_install:
+    name: pip
+    state: latest
+
+
 - name: Download docker shell file
   get_url:
     url: https://releases.rancher.com/install-docker/1.13.sh
     dest: /home/ec2-user/
+    owner: ec2-user
+    group: ec2-user
+    mode: +x
+    remote_src: yes
 
 - name: install docker
-  script: /home/ec2-user/1.13.sh
+  shell: /home/ec2-user/1.13.sh 
+
+
+- name: add user to docker group
+  user: 
+    name: ec2-user
+    groups: docker 
+    append: yes
+    #sudo: true
 
 - name: restart docker
   service:
@@ -22,5 +39,8 @@
   pip:
     name: docker-compose
     version: 1.9.0
-    #state: present
   
+- name: install the latest version of git
+  yum:
+    name: git
+    state: latest
