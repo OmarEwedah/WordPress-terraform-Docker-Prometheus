@@ -1,6 +1,6 @@
 provider "aws" {
-  access_key = "xxxxxxxxxxxxxxxxxx"
-  secret_key = "xxxxxxxxxxxxxxxxxxxxxxxx"
+  access_key = "AKIAIQUHTG6J576BXHGA"
+  secret_key = "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"
   region     = "eu-west-2"
 }
 
@@ -110,7 +110,7 @@ resource "aws_instance" "ec2" {
   command = "sleep 100"
   }
   provisioner "local-exec" {
-  command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook /home/cloud/WordPress-terraform-Docker-Prometheus/ansible/docker.yml -u ec2-user --private-key /home/cloud/WordPress-terraform-Docker-Prometheus/ansible/key.pem -t docker,prometheus -i ${aws_instance.ec2.public_ip},",
+  command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook /home/cloud/WordPress-terraform-Docker-Prometheus/ansible/docker.yml -u ec2-user --private-key key.pem -t docker,prometheus -i ${aws_instance.ec2.public_ip},",
 
   }
 }
@@ -134,7 +134,7 @@ resource "aws_instance" "ec2-WordPress" {
   command = "sleep 100"
   }
   provisioner "local-exec" {
-  command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook /home/cloud/WordPress-terraform-Docker-Prometheus/ansible/docker.yml -u ec2-user --private-key /home/cloud/WordPress-terraform-Docker-Prometheus/ansible/key.pem -t docker,prometheus -t docker,wordpress -i ${aws_instance.ec2-WordPress.public_ip},",
+  command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook /home/cloud/WordPress-terraform-Docker-Prometheus/ansible/docker.yml -u ec2-user --private-key key.pem -t docker,prometheus -t docker,wordpress -i ${aws_instance.ec2-WordPress.public_ip},",
 
   }
 }
