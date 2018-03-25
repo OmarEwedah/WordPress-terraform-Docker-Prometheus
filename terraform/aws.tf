@@ -146,6 +146,6 @@ output "ip2" {
 }
 resource "aws_key_pair" "terraform_ec2_key" {
   key_name   = "key"
-  public_key = "ssh-rsa xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  public_key = "ssh-rsa "
 }
 
