@@ -1,6 +1,6 @@
 provider "aws" {
-  access_key = "xxxxxxxxxxxxxxxxxxxxx"
-  secret_key = "xxxxxxx"
+  access_key = "xxxxxxxxxxxxxxxxxxxx"
+  secret_key = "xxxxxxxxxxxxxxxxxxxxxx"
   region     = "eu-west-2"
 }
 
@@ -122,6 +122,15 @@ resource "aws_instance" "ec2" {
   command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook /home/cloud/WordPress-terraform-Docker-Prometheus/ansible/docker.yml --tags docker1,prometheus1,nginx1 -u ec2-user --private-key /home/cloud/WordPress-terraform-Docker-Prometheus/ansible/key.pem --extra-vars IP_ADDRESS=${aws_instance.ec2-WordPress.public_ip} -i ${aws_instance.ec2.public_ip},"
 
   }
+
+  key_name= "key"
+  provisioner "remote-exec" {
+      inline = [
+         "sudo -i",
+         "docker build -t nginxte ~/WordPress-terraform-Docker-Prometheus/nginx/",
+         "docker run -d -p 2000:80 -e IP_ADDRESS=${aws_instance.ec2-WordPress.public_ip} nginxte"
+      ]
+   }
 }
 
 resource "aws_instance" "ec2-WordPress" {
@@ -155,6 +164,6 @@ output "ip2" {
 }
 resource "aws_key_pair" "terraform_ec2_key" {
   key_name   = "key"
-  public_key = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  public_key = "ssh-rsa "
 }
 

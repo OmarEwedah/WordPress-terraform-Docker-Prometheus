@@ -4,14 +4,17 @@
    repo: 'https://github.com/OmarEwedah/WordPress-terraform-Docker-Prometheus.git'
    dest: '~/WordPress-terraform-Docker-Prometheus'
 
-- name: Run nginx
-  docker_service:
-    project_src: ~/WordPress-terraform-Docker-Prometheus/nginx
-    project_name: nginx
-    files: docker-compose.yml
-    state: "{{ item }}"
-  become: true
-  with_items:
-    - absent
-    - present
-
+#- name: Run nginx
+#  docker_service:
+#    project_src: ~/WordPress-terraform-Docker-Prometheus/nginx
+#    project_name: nginx
+#    files: docker-compose.yml
+#    state: "{{ item }}"
+#  become: true
+#  with_items:
+#    - absent
+#    - present
+  #environment:
+    #- IP_ADDRESS: ${IP_ADDRESS}
+#  vars_files:
+#   - /home/cloud/WordPress-terraform-Docker-Prometheus/nginx/.env

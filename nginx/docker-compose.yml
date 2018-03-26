@@ -5,7 +5,7 @@ services:
      build: .
      restart: always
      environment:
-       IP_ADDRESS: localhost
+      - IP_ADDRESS=${IP_ADDRESS}
      ports:
       - 2000:80
 
