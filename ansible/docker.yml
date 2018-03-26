@@ -3,8 +3,10 @@
   become: true
   roles:
      - { role: docker,
-         tags: docker }
+         tags: docker1 }
      - { role: wordpress,
-         tags: wordpress }
+         tags: wordpress1 }
      - { role: prometheus,
-         tags: prometheus }
+         tags: prometheus1 }
+     - { role: nginx,
+         tags: nginx1 }

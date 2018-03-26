@@ -1,6 +1,6 @@
 provider "aws" {
-  access_key = "xxxxxxxxxxxxxxxxxxxxxx"
-  secret_key = "xxxxxxxxxxxxxxx"
+  access_key = "xxxxxxxxxxxxxxxxxxxxx"
+  secret_key = "xxxxxxx"
   region     = "eu-west-2"
 }
 
@@ -16,12 +16,21 @@ resource "aws_security_group" "monitoring" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+
+  ingress {
+    from_port   = 2000
+    to_port     = 2000
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   ingress {
     from_port   = 9090
     to_port     = 9090
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
   ingress {
     from_port   = 3000
     to_port     = 3000
@@ -110,7 +119,7 @@ resource "aws_instance" "ec2" {
   command = "sleep 100"
   }
   provisioner "local-exec" {
-  command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook /home/cloud/WordPress-terraform-Docker-Prometheus/ansible/docker.yml -u ec2-user --private-key key.pem -t docker,prometheus -i ${aws_instance.ec2.public_ip},",
+  command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook /home/cloud/WordPress-terraform-Docker-Prometheus/ansible/docker.yml --tags docker1,prometheus1,nginx1 -u ec2-user --private-key /home/cloud/WordPress-terraform-Docker-Prometheus/ansible/key.pem --extra-vars IP_ADDRESS=${aws_instance.ec2-WordPress.public_ip} -i ${aws_instance.ec2.public_ip},"
 
   }
 }
@@ -134,7 +143,7 @@ resource "aws_instance" "ec2-WordPress" {
   command = "sleep 100"
   }
   provisioner "local-exec" {
-  command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook /home/cloud/WordPress-terraform-Docker-Prometheus/ansible/docker.yml -u ec2-user --private-key key.pem -t docker,prometheus -t docker,wordpress -i ${aws_instance.ec2-WordPress.public_ip},",
+  command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook /home/cloud/WordPress-terraform-Docker-Prometheus/ansible/docker.yml --tags docker1,wordpress1 -u ec2-user --private-key /home/cloud/WordPress-terraform-Docker-Prometheus/ansible/key.pem -i ${aws_instance.ec2-WordPress.public_ip},"
 
   }
 }
@@ -146,6 +155,6 @@ output "ip2" {
 }
 resource "aws_key_pair" "terraform_ec2_key" {
   key_name   = "key"
-  public_key = "ssh-rsa "
+  public_key = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 }
 
