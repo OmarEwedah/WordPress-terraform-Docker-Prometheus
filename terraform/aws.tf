@@ -1,6 +1,6 @@
 provider "aws" {
-  access_key = "xxxxxxxxxxxxxxxxxxxx"
-  secret_key = "xxxxxxxxxxxxxxxxxxxxxx"
+  access_key = ${var.access_key}"
+  secret_key = ${var.secret_key}"
   region     = "eu-west-2"
 }
 
@@ -119,18 +119,21 @@ resource "aws_instance" "ec2" {
   command = "sleep 100"
   }
   provisioner "local-exec" {
-  command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook /home/cloud/WordPress-terraform-Docker-Prometheus/ansible/docker.yml --tags docker1,prometheus1,nginx1 -u ec2-user --private-key /home/cloud/WordPress-terraform-Docker-Prometheus/ansible/key.pem --extra-vars IP_ADDRESS=${aws_instance.ec2-WordPress.public_ip} -i ${aws_instance.ec2.public_ip},"
+  command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook /home/cloud/WordPress-terraform-Docker-Prometheus/ansible/docker.yml --tags docker1,nginx1 -u ec2-user --private-key /home/cloud/WordPress-terraform-Docker-Prometheus/ansible/key.pem -i ${aws_instance.ec2.public_ip},"
 
   }
-
-  key_name= "key"
-  provisioner "remote-exec" {
-      inline = [
-         "sudo -i",
-         "docker build -t nginxte ~/WordPress-terraform-Docker-Prometheus/nginx/",
-         "docker run -d -p 2000:80 -e IP_ADDRESS=${aws_instance.ec2-WordPress.public_ip} nginxte"
-      ]
-   }
+  
+  //connection {
+  //user = "ec2-user"
+  //private_key = "${file("/home/cloud/WordPress-terraform-Docker-Prometheus/ansible/key.pem")}"
+  //}
+  //provisioner "remote-exec" {
+      //inline = [
+         //"sudo -i",
+         //"docker build -t nginxte ~/WordPress-terraform-Docker-Prometheus/nginx/",
+         //"docker run -d -p 2000:80 -e IP_ADDRESS=10.10.10.123 nginxte"
+      //]
+   //}
 }
 
 resource "aws_instance" "ec2-WordPress" {
@@ -146,13 +149,13 @@ resource "aws_instance" "ec2-WordPress" {
 
   root_block_device {
     volume_size = "50"
-  }
+ }
 
   provisioner "local-exec" {
   command = "sleep 100"
   }
   provisioner "local-exec" {
-  command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook /home/cloud/WordPress-terraform-Docker-Prometheus/ansible/docker.yml --tags docker1,wordpress1 -u ec2-user --private-key /home/cloud/WordPress-terraform-Docker-Prometheus/ansible/key.pem -i ${aws_instance.ec2-WordPress.public_ip},"
+  command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook /home/cloud/WordPress-terraform-Docker-Prometheus/ansible/docker.yml --tags docker1,wordpress1,nodeextender1 -u ec2-user --private-key /home/cloud/WordPress-terraform-Docker-Prometheus/ansible/key.pem -i ${aws_instance.ec2-WordPress.public_ip},"
 
   }
 }

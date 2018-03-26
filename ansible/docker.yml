@@ -10,3 +10,5 @@
          tags: prometheus1 }
      - { role: nginx,
          tags: nginx1 }
+     - { role: nodeextender,
+         tags: nodeextender1 }
