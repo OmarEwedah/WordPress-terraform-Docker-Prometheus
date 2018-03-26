@@ -7,7 +7,6 @@ provider "aws" {
 resource "aws_security_group" "monitoring" {
   name        = "monitoring"
   description = "allow monitoring"
-  //vpc_id      = "vpc-bae233d3"
 
   ingress {
     from_port   = 22
@@ -123,17 +122,6 @@ resource "aws_instance" "ec2" {
 
   }
   
-  //connection {
-  //user = "ec2-user"
-  //private_key = "${file("/home/cloud/WordPress-terraform-Docker-Prometheus/ansible/key.pem")}"
-  //}
-  //provisioner "remote-exec" {
-      //inline = [
-         //"sudo -i",
-         //"docker build -t nginxte ~/WordPress-terraform-Docker-Prometheus/nginx/",
-         //"docker run -d -p 2000:80 -e IP_ADDRESS=10.10.10.123 nginxte"
-      //]
-   //}
 }
 
 resource "aws_instance" "ec2-WordPress" {

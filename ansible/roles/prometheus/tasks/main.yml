@@ -4,9 +4,9 @@
    repo: 'https://github.com/OmarEwedah/WordPress-terraform-Docker-Prometheus.git'
    dest: ~/WordPress-terraform-Docker-Prometheus
 
-- name: Run Prometheus, cAdvisor and grafana
+- name: Run Prometheus and grafana
   docker_service:
-    project_src: ~/WordPress-terraform-Docker-Prometheus/prometheus-cadvisor-grafana-docker-compose
+    project_src: ~/WordPress-terraform-Docker-Prometheus/prometheus-grafana-docker-compose
     project_name: Prometheus
     files: docker-compose.yml
     state: "{{ item }}"
