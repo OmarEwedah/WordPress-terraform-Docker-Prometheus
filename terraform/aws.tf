@@ -119,7 +119,7 @@ resource "aws_instance" "ec2" {
   command = "sleep 100"
   }
   provisioner "local-exec" {
-  command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook /home/cloud/WordPress-terraform-Docker-Prometheus/ansible/docker.yml --tags docker1,prometheus,nginx1 -u ec2-user --private-key ~/WordPress-terraform-Docker-Prometheus/ansible/key.pem --extra-vars IP_ADDRESS=${aws_instance.ec2-WordPress.public_ip} -i ${aws_instance.ec2.public_ip},"
+  command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook /home/cloud/WordPress-terraform-Docker-Prometheus/ansible/docker.yml --tags docker1,prometheus1,nginx1 -u ec2-user --private-key ~/WordPress-terraform-Docker-Prometheus/ansible/key.pem --extra-vars IP_ADDRESS=${aws_instance.ec2-WordPress.public_ip} -i ${aws_instance.ec2.public_ip},"
 
   }
   
