@@ -1,6 +1,6 @@
 provider "aws" {
-  access_key = ${var.access_key}"
-  secret_key = ${var.secret_key}"
+  access_key = "${var.access_key}"
+  secret_key = "${var.secret_key}"
   region     = "eu-west-2"
 }
 
@@ -167,6 +167,6 @@ output "ip2" {
 }
 resource "aws_key_pair" "terraform_ec2_key" {
   key_name   = "key"
-  public_key = "ssh-rsa "
+  public_key = "ssh-rsa AAAB3NzaC1yc2EAAAADAQABAAABAQDBa1bJ/98f5DgaWrZOqJXzlSDm2Yjj7ahbiC/wXEqOevw6IpKGOv09xaD2fqkQGmnoBOXBuyN9jK5eFoz25kzAoKvsFjOLJ5qf5QY+NdgSw2mwsG0Tb/PNRlbltv533xRFx4mzMoEEqs/QjnA7987j5TWxEVASoI5rNi9tq4twFAohTAnbQrOl8A/2/ZPU3y7rtFWZf6SovaTMfC8Cns8XMEB5tBX79gZZOvDzhaBbpUjOqJvOg2tN73pqEyh8lrXPin+18KPHEbL3WTNdKfwr3Ov8kveanyFpel+vQnjaoVaZL5BlARPdRXFjkQLWtp9THNbIDpqXbhn9IjTLINFH cloud@rancher"
 }
 
