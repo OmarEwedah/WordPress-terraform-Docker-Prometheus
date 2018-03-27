@@ -15,6 +15,25 @@ resource "aws_security_group" "monitoring" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    from_port   = 9100
+    to_port     = 9100
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    from_port   = 8000
+    to_port     = 8000
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
   ingress {
     from_port   = 2000
@@ -45,10 +64,9 @@ resource "aws_security_group" "monitoring" {
   }
 }
 
-resource "aws_security_group" "wordpress" {
+/*resource "aws_security_group" "wordpress" {
   name        = "wordpress"
   description = "allow wordpress"
-  //vpc_id      = "vpc-bae233d3"
 
   ingress {
     from_port   = 22
@@ -83,7 +101,7 @@ resource "aws_security_group" "wordpress" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-}
+}*/
 
 //data "template_file" "shell-script" {
   //template = "${file("scripts/pre.sh")}"
@@ -118,10 +136,10 @@ resource "aws_instance" "ec2" {
   command = "sleep 100"
   }
   provisioner "local-exec" {
-  command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook /home/cloud/WordPress-terraform-Docker-Prometheus/ansible/docker.yml --tags docker1,prometheus1,nginx1 -u ec2-user --private-key ~/WordPress-terraform-Docker-Prometheus/ansible/key.pem --extra-vars IP_ADDRESS=${aws_instance.ec2-WordPress.public_ip} -i ${aws_instance.ec2.public_ip},"
+  command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook /home/cloud/WordPress-terraform-Docker-Prometheus/ansible/docker.yml --tags docker1,prometheus1,nginx1 -u ec2-user --private-key ~/WordPress-terraform-Docker-Prometheus/ansible/key.pem --extra-vars IP_ADDRESS=${aws_instance.ec2.public_ip} -i ${aws_instance.ec2.public_ip},"
 
   }
-  
+
 }
 
 resource "aws_instance" "ec2-WordPress" {
@@ -157,4 +175,3 @@ resource "aws_key_pair" "terraform_ec2_key" {
   key_name   = "key"
   public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDBa1bJ/98f5DgaWrZOqJXzlSDm2Yjj7ahbiC/wXEqOevw6IpKGOv09xaD2fqkQGmnoBOXBuyN9jK5eFoz25kzAoKvsFjOLJ5qf5QY+NdgSw2mwsG0Tb/PNRlbltv533xRFx4mzMoEEqs/QjnA7987j5TWxEVASoI5rNi9tq4twFAohTAnbQrOl8A/2/ZPU3y7rtFWZf6SovaTMfC8Cns8XMEB5tBX79gZZOvDzhaBbpUjOqJvOg2tN73pqEyh8lrXPin+18KPHEbL3WTNdKfwr3Ov8kveanyFpel+vQnjaoVaZL5BlARPdRXFjkQLWtp9THNbIDpqXbhn9IjTLINFH cloud@rancher"
 }
-
