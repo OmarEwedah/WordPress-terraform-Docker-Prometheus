@@ -11,6 +11,8 @@ services:
     container_name: prometheus
     volumes:
       - prometheus_data:/prometheus
+      - ./env.sh:/etc/prometheus/
+      - ./prometheus.yml:/etc/prometheus/
     environment:
       - IP_ADDRESS=52.47.180.55
     command:
@@ -44,4 +46,3 @@ services:
       - 3000:3000
     labels:
       org.label-schema.group: "monitoring"
-

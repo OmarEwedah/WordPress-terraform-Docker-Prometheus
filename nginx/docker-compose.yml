@@ -4,7 +4,7 @@ services:
    nginx:
      build: .
      restart: always
-     environment:
-      - IP_ADDRESS=localhost
+     #environment:
+      #- IP_ADDRESS=localhost
      ports:
       - 2000:80
