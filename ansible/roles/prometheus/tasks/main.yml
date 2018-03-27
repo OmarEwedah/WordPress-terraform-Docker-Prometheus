@@ -5,11 +5,11 @@
    dest: ~/WordPress-terraform-Docker-Prometheus
 
 - name: replace the IP
-  shell: sed -i "s#IP_ADDRESS#$(curl -s ifconfig.co)#g" ~/WordPress-terraform-Docker-Prometheus/prometheus-grafana-docker-compose/prometheus.yml 
+  shell: sed -i "s#IP_ADDRESS#$(curl -s ifconfig.co)#g" ~/WordPress-terraform-Docker-Prometheus/prometheus-grafana-docker-compose/prometheus.yml
 
 - name: Run Prometheus and grafana
   docker_service:
-    project_src: ~/WordPress-terraform-Docker-Prometheus/prometheus-grafana-docker-compose
+    project_src: ~/WordPress-terraform-Docker-Prometheus/prometheus-grafana-docker-compose/
     project_name: Prometheus
     files: docker-compose.yml
     state: "{{ item }}"

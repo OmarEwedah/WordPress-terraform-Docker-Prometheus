@@ -6,7 +6,7 @@
 
 - name: Run nodeextender and cAdvisor
   docker_service:
-    project_src: ~/WordPress-terraform-Docker-Prometheus/nodeexporter-cadvisor
+    project_src: ~/WordPress-terraform-Docker-Prometheus/nodeexporter-cadvisor/
     project_name: nodeextender
     files: docker-compose.yml
     state: "{{ item }}"
@@ -14,4 +14,3 @@
   with_items:
     - absent
     - present
-

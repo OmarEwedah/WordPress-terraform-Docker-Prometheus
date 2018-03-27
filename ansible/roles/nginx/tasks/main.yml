@@ -3,7 +3,7 @@
 
 - name: Run nginx
   docker_service:
-    project_src: ~/WordPress-terraform-Docker-Prometheus/nginx
+    project_src: ~/WordPress-terraform-Docker-Prometheus/nginx/
     project_name: nginx
     files: docker-compose.yml
     state: "{{ item }}"
