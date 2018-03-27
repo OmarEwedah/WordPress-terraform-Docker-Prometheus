@@ -26,6 +26,13 @@ if [ "$(uname)" == "Darwin" ]; then
   # Terraform Paths.
   export PATH=$PATH:~/terraform
   echo "PATH=\$PATH:\$HOME/terraform" >> ~/bash_profile
+  git clone https://github.com/OmarEwedah/WordPress-terraform-Docker-Prometheus.git
+  mv WordPress-terraform-Docker-Prometheus ~/
+  cd ..
+  cp ./key.pem ~/WordPress-terraform-Docker-Prometheus/ansible/
+  cd ~/WordPress-terraform-Docker-Prometheus/terraform
+  terraform init
+  terraform apply
 
   # For Linux
 elif [ "$(uname)" == "Linux" ]; then
