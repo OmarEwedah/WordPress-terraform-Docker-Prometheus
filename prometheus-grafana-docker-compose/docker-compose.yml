@@ -7,7 +7,7 @@ volumes:
 services:
 
   prometheus:
-    build: .
+    image: prom/prometheus 
     container_name: prometheus
     volumes:
       - prometheus_data:/prometheus
