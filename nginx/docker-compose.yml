@@ -5,6 +5,6 @@ services:
      build: .
      restart: always
      environment:
-      - IP_ADDRESS: localhost
+      - IP_ADDRESS=localhost
      ports:
       - 2000:80
