@@ -1,9 +1,3 @@
-- name: clone the project
-  become_user: root
-  git:
-   repo: 'https://github.com/OmarEwedah/WordPress-terraform-Docker-Prometheus.git'
-   dest: ~/WordPress-terraform-Docker-Prometheus
-
 - name: Run nodeextender and cAdvisor
   docker_service:
     project_src: ~/WordPress-terraform-Docker-Prometheus/nodeexporter-cadvisor/
