@@ -9,4 +9,4 @@ services:
      #environment:
       #- IP_ADDRESS=localhost
      ports:
-      - 2000:80
+      - 80:80
