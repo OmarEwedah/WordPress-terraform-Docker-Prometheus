@@ -16,6 +16,10 @@ services:
  cadvisor:
     image: google/cadvisor
     container_name: cadvisor
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /var/lib/docker/:/var/lib/docker:ro
     restart: unless-stopped
     ports:
       - 8080:8080

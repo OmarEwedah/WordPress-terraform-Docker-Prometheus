@@ -21,7 +21,6 @@
     name: ec2-user
     groups: docker
     append: yes
-    #sudo: true
 
 - name: restart docker
   service:
