@@ -35,11 +35,12 @@
     dest: /usr/local/bin/docker-compose
     mode: +x
 
-#- name: install docker compose package
-  #pip:
-    #name: docker-compose
-    #version: 1.19.0
-    #executable: /bin/pip
+- name: install docker compose package
+  pip:
+    name: docker-compose
+    version: 1.19.0
+    executable: /bin/pip
+    extra_args: --ignore-installed
 
 - name: install the latest version of git
   yum:

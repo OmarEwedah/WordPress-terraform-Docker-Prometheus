@@ -1,9 +1,3 @@
-- name: clone the project
-  become_user: root
-  git:
-   repo: 'https://github.com/OmarEwedah/WordPress-terraform-Docker-Prometheus.git'
-   dest: ~/WordPress-terraform-Docker-Prometheus
-
 - name: replace the IP
   shell: sed -i "s#IP_ADDRESS#$(curl -s ifconfig.co)#g" ~/WordPress-terraform-Docker-Prometheus/prometheus-grafana-docker-compose/prometheus.yml
 
