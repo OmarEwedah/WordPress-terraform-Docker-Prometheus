@@ -13,13 +13,13 @@
     remote_src: yes
 
 - name: install docker
-  shell: /home/ec2-user/1.13.sh 
+  shell: /home/ec2-user/1.13.sh
 
 
 - name: add user to docker group
-  user: 
+  user:
     name: ec2-user
-    groups: docker 
+    groups: docker
     append: yes
     #sudo: true
 
@@ -38,8 +38,8 @@
 - name: install docker compose package
   pip:
     name: docker-compose
-    version: 1.9.0
-  
+    version: 1.20.1
+
 - name: install the latest version of git
   yum:
     name: git
